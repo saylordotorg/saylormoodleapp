@@ -1,6 +1,6 @@
 {
-    "app_id": "com.moodle.moodlemobile",
-    "appname": "Moodle Mobile",
+    "app_id": "com.moodle.saylor",
+    "appname": "Saylor University",
     "versioncode": 53001,
     "versionname": "5.3.0",
     "cache_update_frequency_usually": 420000,
@@ -68,40 +68,38 @@
         "zh-tw": "正體中文"
     },
     "wsservice": "moodle_mobile_app",
-    "demo_sites": {
-        "student": {
-            "url": "https://school.moodledemo.net",
-            "username": "student",
-            "password": "moodle26"
-        },
-        "teacher": {
-            "url": "https://school.moodledemo.net",
-            "username": "teacher",
-            "password": "moodle26"
-        }
-    },
+    "demo_sites": {},
     "defaultZoomLevel": "none",
     "zoomlevels": {
         "none": 100,
         "medium": 110,
         "high": 120
     },
-    "customurlscheme": "moodlemobile",
-    "sites": [],
-    "multisitesdisplay": "",
+    "customurlscheme": "sayloruniversity",
+    "sites": [
+        {
+            "name": "Free Courses",
+            "url": "https://learn.saylor.org"
+        },
+        {
+            "name": "Degree Programs",
+            "url": "https://degrees.saylor.org"
+        }
+    ],
+    "multisitesdisplay": "list",
     "sitefindersettings": {},
     "onlyallowlistedsites": false,
     "forcedefaultlanguage": false,
-    "privacypolicy": "https://moodle.net/moodle-app-privacy/",
-    "notificoncolor": "#f98012",
+    "privacypolicy": "https://saylor.org/PrivacyPolicy",
+    "notificoncolor": "#173140",
     "enableanalytics": false,
     "forceColorScheme": "",
-    "forceLoginLogo": false,
-    "showTopLogo": "hidden",
+    "forceLoginLogo": true,
+    "showTopLogo": "offline",
     "ioswebviewscheme": "moodleappfs",
     "appstores": {
-        "android": "com.moodle.moodlemobile",
-        "ios": "id633359593"
+        "android": "com.moodle.saylor",
+        "ios": "id1481507148"
     },
     "wsrequestqueuelimit": 10,
     "wsrequestqueuedelay": 100,

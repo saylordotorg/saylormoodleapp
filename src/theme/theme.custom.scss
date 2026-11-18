@@ -5,11 +5,27 @@
  */
 
 /*
+ * Saylor University: shared by light and dark themes.
+ * -------------------------------------------
+ */
+:root {
+    // Navy header with the white Saylor logo (assets/img/top_logo.png).
+    --core-header-toolbar-background: #{$saylor-navy};
+    --core-header-toolbar-border-color: #{$saylor-navy};
+    --core-header-toolbar-color: #{$white};
+
+    // Orange accent on the main menu.
+    --core-bottom-tabs-border-color-active: #{$saylor-orange};
+    --core-bottom-tabs-badge-color: #{$saylor-orange};
+    --core-bottom-tabs-badge-text-color: #{$saylor-navy};
+}
+
+/*
  * Light Theme
  * -------------------------------------------
  */
 :root {
-
+    --core-bottom-tabs-color-selected: #{$saylor-navy};
 }
 
 /*
@@ -17,5 +33,20 @@
  * -------------------------------------------
  */
 :root.dark {
+    --core-header-toolbar-background: #{$saylor-navy};
+    --core-header-toolbar-border-color: #{$saylor-navy};
+    --core-header-toolbar-color: #{$white};
 
+    --core-bottom-tabs-border-color-active: #{$saylor-orange};
+    --core-bottom-tabs-badge-color: #{$saylor-orange};
+    --core-bottom-tabs-badge-text-color: #{$saylor-navy};
+
+    --core-login-background: #{$saylor-navy};
+    --core-login-input-background: #{$saylor-navy};
+
+    // The navy logo disappears on dark backgrounds: swap in the white version.
+    img.login-logo,
+    img.core-logo-fallback[src$="login_logo.png"] {
+        content: url("/assets/img/login_logo_dark.png");
+    }
 }
