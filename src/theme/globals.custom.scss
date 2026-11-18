@@ -3,3 +3,14 @@
  * ----------------------------------------------------------------------------
  * Place here all custom app variables.
  */
+
+// Saylor University brand palette (taken from saylor.org and the Saylor logo).
+$saylor-navy:   #173140;
+$saylor-blue:   #469dcc;
+$saylor-sky:    #b0d5e9;
+$saylor-orange: #f87c12;
+
+$brand-color:  $saylor-navy;
+$primary:      $saylor-navy;
+// Navy is unreadable on dark surfaces, so dark mode uses the logo blue.
+$primary-dark: $saylor-blue;

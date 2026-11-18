@@ -1,0 +1,26 @@
+diff --git a/node_modules/@moodlehq/cordova-plugin-advanced-http/src/ios/SM_AFNetworking/SM_AFHTTPSessionManager.m b/node_modules/@moodlehq/cordova-plugin-advanced-http/src/ios/SM_AFNetworking/SM_AFHTTPSessionManager.m
+index e164553..98b8537 100644
+--- a/node_modules/@moodlehq/cordova-plugin-advanced-http/src/ios/SM_AFNetworking/SM_AFHTTPSessionManager.m
++++ b/node_modules/@moodlehq/cordova-plugin-advanced-http/src/ios/SM_AFNetworking/SM_AFHTTPSessionManager.m
+@@ -29,7 +29,7 @@
+ #import <Security/Security.h>
+ 
+ #import <netinet/in.h>
+-#import <netinet6/in6.h>
++// netinet6/in6.h is a private header since Xcode 27; netinet/in.h already includes it.
+ #import <arpa/inet.h>
+ #import <ifaddrs.h>
+ #import <netdb.h>
+diff --git a/node_modules/@moodlehq/cordova-plugin-advanced-http/src/ios/SM_AFNetworking/SM_AFNetworkReachabilityManager.m b/node_modules/@moodlehq/cordova-plugin-advanced-http/src/ios/SM_AFNetworking/SM_AFNetworkReachabilityManager.m
+index df0163d..1d6435c 100644
+--- a/node_modules/@moodlehq/cordova-plugin-advanced-http/src/ios/SM_AFNetworking/SM_AFNetworkReachabilityManager.m
++++ b/node_modules/@moodlehq/cordova-plugin-advanced-http/src/ios/SM_AFNetworking/SM_AFNetworkReachabilityManager.m
+@@ -23,7 +23,7 @@
+ #if !TARGET_OS_WATCH
+ 
+ #import <netinet/in.h>
+-#import <netinet6/in6.h>
++// netinet6/in6.h is a private header since Xcode 27; netinet/in.h already includes it.
+ #import <arpa/inet.h>
+ #import <ifaddrs.h>
+ #import <netdb.h>
