@@ -42,8 +42,11 @@ iOS simulator:
 
 ```bash
 NODE_ENV=production npx ionic cordova prepare ios --prod
-npx cordova compile ios --emulator --debug --buildFlag="IPHONEOS_DEPLOYMENT_TARGET=15.0"
+npx cordova compile ios --emulator --debug
 ```
+
+The first time, when `platforms/ios` does not exist yet, create it with `mkdir -p www && npx cordova
+prepare ios` before the two commands above.
 
 Android debug APK (`platforms/android/app/build/outputs/apk/debug/app-debug.apk`):
 
@@ -52,16 +55,32 @@ NODE_ENV=production npx ionic cordova prepare android --prod
 npx cordova compile android --debug
 ```
 
+## Xcode Cloud
+
+`platforms/ios`, including `App.xcworkspace`, is generated and not committed, so Xcode Cloud has
+nothing to build straight after cloning. `scripts/xcode-cloud/ci_post_clone.sh` generates it:
+it installs Node 24 and CocoaPods if the build machine lacks them, runs `npm ci`, and runs the
+Cordova iOS prepare. Xcode Cloud only looks for scripts in a `ci_scripts` folder next to the
+workspace, so `platforms/ios/ci_scripts/ci_post_clone.sh` is a committed stub that calls it.
+
+Workflow settings to use:
+
+- Workspace `platforms/ios/App.xcworkspace`, scheme `App`.
+- iOS actions only. Remove the visionOS action: the app does not run there.
+
+If `platforms/ios` is ever deleted locally, restore the stub with
+`git checkout -- platforms/ios/ci_scripts`.
+
 ## Things to know
 
 - If the app ID in `config.xml` ever changes, remove and recreate the Android platform
   (`npx cordova platform rm android --nosave`, then prepare again). Cordova cannot rename an
   existing Android project and fails with "No Java files found that extend CordovaActivity".
-- `IPHONEOS_DEPLOYMENT_TARGET=15.0` is needed because the Firebase pods still declare iOS 9-11,
-  which Xcode 27 rejects.
 - `patches/@moodlehq+cordova-plugin-advanced-http+*.patch` removes an import Xcode 27 treats as
-  private. `scripts/cordova-hooks/after_prepare_ios.sh` keeps the Swift header name the push
-  plugin expects now that the app is no longer called "Moodle".
+  private.
+- `scripts/cordova-hooks/after_prepare_ios.sh` runs after every iOS prepare. It keeps the Swift
+  header name the push plugin expects now that the app is no longer called "Moodle", and raises
+  the Firebase pods' minimum iOS version from 9-11 to 15, which Xcode 27 requires.
 - **Push notifications are not set up.** `google-services.json` and `GoogleService-Info.plist`
   are still Moodle's. The Android build fails with "No matching client found for package name"
   until `google-services.json` comes from a Firebase project that includes `com.moodle.saylor`.
