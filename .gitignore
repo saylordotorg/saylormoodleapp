@@ -19,7 +19,11 @@ log.txt
 # Ionic
 /.ionic
 /www
-/platforms
+/platforms/*
+# Xcode Cloud needs its ci_scripts folder next to the (generated) iOS workspace.
+!/platforms/ios/
+/platforms/ios/*
+!/platforms/ios/ci_scripts/
 /plugins
 
 # Compiled output
